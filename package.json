@@ -1,5 +1,5 @@
 {
-  "name": "serverless-chrome",
+  "name": "app-dibs-lighthouse",
   "version": "1.0.0-34",
   "description": "Run headless Chrome, serverless-ly",
   "main": "handler.js",
@@ -7,21 +7,11 @@
     "node": ">= 6.10.0"
   },
   "scripts": {
-    "test": "npm run lint && nyc ava",
-    "watch:test": "ava --watch",
     "ava": "ava",
-    "lint": "npm run lint:eslint -s",
-    "lint:eslint": "eslint --cache --ext .js .",
     "coverage": "nyc report",
     "upgrade-dependencies": "yarn upgrade-interactive --latest --exact",
-    "precommit": "lint-staged",
-    "prettier": "prettier-eslint --no-semi --single-quote --trailing-comma es5 --write",
     "release": "scripts/release.sh",
     "postversion": "scripts/sync-package-versions.sh"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/adieuadieu/serverless-chrome.git"
   },
   "keywords": [
     "serverless",
@@ -32,13 +22,11 @@
     "lambda",
     "serverless-framework"
   ],
-  "author": "Marco Lüthy",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/adieuadieu/serverless-chrome/issues"
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "lighthouse": "^2.8.0",
+    "uuid": "^3.2.1"
   },
-  "homepage": "https://github.com/adieuadieu/serverless-chrome",
-  "dependencies": {},
   "devDependencies": {
     "ava": "0.23.0",
     "babel-core": "6.26.0",
@@ -51,19 +39,9 @@
     "babel-runtime": "6.26.0",
     "codacy-coverage": "2.0.3",
     "coveralls": "3.0.0",
-    "eslint": "4.11.0",
-    "eslint-config-airbnb-base": "12.1.0",
-    "eslint-plugin-ava": "4.2.2",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-node": "5.2.1",
-    "eslint-plugin-promise": "3.6.0",
-    "eslint-tap": "2.0.1",
     "husky": "0.14.3",
     "lint-staged": "5.0.0",
     "nyc": "11.3.0",
-    "prettier": "1.8.2",
-    "prettier-eslint": "8.2.2",
-    "prettier-eslint-cli": "^4.4.0",
     "tap-xunit": "1.7.0"
   },
   "ava": {
@@ -85,62 +63,6 @@
         }
       ],
       "stage-3"
-    ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "ava",
-      "import"
-    ],
-    "extends": [
-      "airbnb-base",
-      "plugin:ava/recommended"
-    ],
-    "settings": {
-      "import/parser": "babel-eslint",
-      "import/resolve": {
-        "moduleDirectory": [
-          "node_modules",
-          "src",
-          "./"
-        ]
-      }
-    },
-    "rules": {
-      "no-console": 0,
-      "semi": [
-        "error",
-        "never"
-      ],
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ],
-      "space-before-function-paren": [
-        "error",
-        "always"
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules",
-    "dist"
-  ],
-  "prettier": {
-    "printWidth": 80,
-    "eslintIntegration": true,
-    "jsonEnable": [],
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "useTabs": false
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "yarn prettier",
-      "yarn lint",
-      "git add"
     ]
   }
 }
